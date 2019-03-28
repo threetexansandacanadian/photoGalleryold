@@ -14,6 +14,8 @@ app.get('/photo' + photoPath, (req, res) => {
 
 });
 
+//LOOK I MADE SOME MORE CHANGES
+
 const port = 3210;
 app.listen(port, () => {
   console.log(`listening on port ${port}`)
