@@ -1,0 +1,39 @@
+{
+  "name": "photoGallery",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/threetexansandacanadian/photoGallery.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/threetexansandacanadian/photoGallery/issues"
+  },
+  "homepage": "https://github.com/threetexansandacanadian/photoGallery#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "babel": "^6.23.0",
+    "babel-cli": "^6.26.0",
+    "body-parser": "^1.18.3",
+    "bootstrap": "^4.3.1",
+    "chai": "^4.2.0",
+    "express": "^4.16.4",
+    "mocha": "^6.0.2",
+    "nodemon": "^1.18.10",
+    "pg": "^7.9.0",
+    "react": "^16.8.5",
+    "react-dom": "^16.8.5",
+    "reactjs": "^1.0.0",
+    "redux": "^4.0.1",
+    "vue": "^2.6.10",
+    "webpack": "^4.29.6",
+    "webpack-dev": "^1.1.1"
+  }
+}
