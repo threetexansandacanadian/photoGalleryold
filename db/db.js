@@ -1,5 +1,5 @@
 //AWS S3 bucket: fecphotogallery2019
-//https://s3-<location>.amazonaws.com/fecphotogallery2019/photos
+//'https://s3.amazonaws.com/fecphotogallery2019/photos/';
 
 const pg = require('pg');
 const pool = new pg.Pool({
@@ -7,23 +7,35 @@ const pool = new pg.Pool({
   host: '127.0.0.1',
   database: 'photoGallery',
   password: '',
-  port: '3210'
+  port: '3211'
 });
 
-//user clicks a product
-const getProductPics = (cb) => {
+let productId = '1';
+let photoId = '1';
 
-}
+// user clicks a product, send back all product photos object
+const getProductPics = (productId, (cb) => {
+  pool.query(`SELECT * FROM photos WHERE product_id = ${productId}`, (error, results) => {
+    if (error) {
+      console.log('could not load pictures for product id :', productId, ' error:', errror);
+      cb(error);
+    } else {
+      cb(null, result);
+    }
+  });
+});
 
-//
-const getViewPic = (cb) => {
-
-}
-
-// pool.query(“SELECT NOW() ”, (err, res) => {
-//   console.log(err, res);
-//   pool.end();
-// });
+// user clicks a photo, send back one photo object
+const getViewPic = (photoId, cb) => {
+  pool.query(`SELECT url FROM photos WHERE id = ${photoId}`, (error, result) => {
+    if (error) {
+      console.log('could not load picture by id :', photoId, ' error:', error);
+      cb(error);
+    } else {
+      cb(null, result);
+    }
+  });
+};
 
 let policyAWS = {
   "Id": "Policy1553802725184",
@@ -70,4 +82,4 @@ let policyAWS = {
   ]
 }
 
-module.exports = { getViewPic, getProductPics }
+module.exports = { getProductPics, getViewPic }
