@@ -1,22 +1,40 @@
 const bodyParser = require('body-parser');
 const express = require('express');
 const app = express();
-const db = require('../db');
+const db = require('../db/db');
 
-const path = '/Users/partypeoplegames/13 weeks/FEC/photoGallery/client';
+const photoGalleryPath = '/Users/partypeoplegames/13 weeks/FEC/photoGallery/client';
 app.use(bodyParser.json({ urlencoded: false }));
-app.use(express.static(__dirname + path));
+app.use(express.static(__dirname + photoGalleryPath));
 
-
-const photoPath = '?' + '';
-app.get('/photo' + photoPath, (req, res) => {
-  console.log('querying photos from DB');
-
+//user clicks a product, request all product photos
+app.get('/photos', (req, res) => {
+  const productId = req.query.id;
+  db.getProductPics(productId, (error, results) => {
+    if (error) {
+      console.log('server failed to load photos ', error);
+      res.end();
+    } else {
+      res.status(200).send(results);
+    }
+  })
+  res.end(res.body);
 });
 
-//LOOK I MADE SOME MORE CHANGES
+//user clicks a photo, request one photo
+app.get('/photos/id', (req, res) => {
+  const photoId = req.query.id;
+  db.getViewPic(photoId, (error, result) => {
+    if (error) {
+      console.log('server failed to get photo ', error)
+      res.end();
+    } else {
+      res.status(200).send(result);
+    }
+  })
+});
 
-const port = 3210;
-app.listen(port, () => {
-  console.log(`listening on port ${port}`)
+const PORT = 3210;
+app.listen(PORT, () => {
+  console.log(`listening on port ${PORT}`)
 })
