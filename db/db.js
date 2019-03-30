@@ -2,12 +2,14 @@
 //'https://s3.amazonaws.com/fecphotogallery2019/photos/';
 
 const { Client } = require('pg');
+require('dotenv').config();
+
 const client = new Client({
-  user: 'partypeoplegames',
-  host: 'localhost',
-  database: 'photoGallery',
-  password: '',
-  port: '5432'
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_DB,
+  password: process.env.DB_PASS,
+  port: process.env.DB_PORT
 });
 
 client.connect((err) => {
