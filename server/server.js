@@ -21,7 +21,7 @@ app.get('/photos', (req, res) => {
   res.end(res.body);
 });
 
-//user clicks a photo, request one photo
+//user clicks a photo, request one photo from DB
 app.get('/photos/id', (req, res) => {
   const photoId = req.query.id;
   db.getViewPic(photoId, (error, result) => {

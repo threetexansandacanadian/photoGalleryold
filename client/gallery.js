@@ -17,7 +17,7 @@ export default class Gallery extends React.Component {
 
   render() {
     return (
-      <div>I'm a picture gallery</div>
+      <div>I am a picture gallery</div>
     )
   }
 

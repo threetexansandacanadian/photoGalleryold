@@ -42,7 +42,6 @@ class View extends React.Component {
       </div >
     )
   }
-
 }
 
 module.exports = View;
