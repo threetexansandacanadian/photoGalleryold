@@ -1,38 +1,47 @@
 //AWS S3 bucket: fecphotogallery2019
 //'https://s3.amazonaws.com/fecphotogallery2019/photos/';
 
-const pg = require('pg');
-const pool = new pg.Pool({
+const { Client } = require('pg');
+const client = new Client({
   user: 'partypeoplegames',
-  host: '127.0.0.1',
+  host: 'localhost',
   database: 'photoGallery',
   password: '',
-  port: '3211'
+  port: '5432'
 });
 
-let productId = '1';
-let photoId = '1';
+client.connect((err) => {
+  if (err) {
+    console.log('error connecting to client at DB :', err);
+  } else {
+    console.log('connected to server at DB')
+  }
+})
 
 // user clicks a product, send back all product photos object
-const getProductPics = (productId, (cb) => {
-  pool.query(`SELECT * FROM photos WHERE product_id = ${productId}`, (error, results) => {
+const getProductPics = (productId, cb) => {
+  client.query(`SELECT * FROM photos WHERE product_id = ${productId}`, (error, results) => {
     if (error) {
       console.log('could not load pictures for product id :', productId, ' error:', errror);
       cb(error);
+      client.end();
     } else {
       cb(null, result);
+      client.end();
     }
   });
-});
+};
 
 // user clicks a photo, send back one photo object
 const getViewPic = (photoId, cb) => {
-  pool.query(`SELECT url FROM photos WHERE id = ${photoId}`, (error, result) => {
+  client.query(`SELECT url FROM photos WHERE id = ${photoId}`, (error, result) => {
     if (error) {
       console.log('could not load picture by id :', photoId, ' error:', error);
       cb(error);
+      client.end();
     } else {
       cb(null, result);
+      client.end();
     }
   });
 };

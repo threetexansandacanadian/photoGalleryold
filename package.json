@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server/server.js",
-    "react-dev": "webpack -d --watch"
+    "react-dev": "webpack -d --watch",
+    "build": "webpack --config webpack.config.js"
   },
   "repository": {
     "type": "git",
@@ -35,8 +36,8 @@
     "reactjs": "^1.0.0",
     "redux": "^4.0.1",
     "vue": "^2.6.10",
-    "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0",
     "webpack-dev": "^1.1.1"
-  }
+  },
+  "devDependencies": {}
 }

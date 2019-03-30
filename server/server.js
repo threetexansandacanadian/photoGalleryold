@@ -7,19 +7,6 @@ const photoGalleryPath = '/Users/partypeoplegames/13 weeks/FEC/photoGallery/clie
 app.use(bodyParser.json({ urlencoded: false }));
 app.use(express.static(__dirname + photoGalleryPath));
 
-//user clicks a photo, request one photo
-app.get('/photos/id', (req, res) => {
-  const photoId = req.query.id;
-  db.getViewPic(photoId, (error, result) => {
-    if (error) {
-      console.log('server failed to get photo ', error)
-      res.end();
-    } else {
-      res.status(200).send(result);
-    }
-  })
-});
-
 //user clicks a product, request all product photos
 app.get('/photos', (req, res) => {
   const productId = req.query.id;
@@ -32,6 +19,19 @@ app.get('/photos', (req, res) => {
     }
   })
   res.end(res.body);
+});
+
+//user clicks a photo, request one photo
+app.get('/photos/id', (req, res) => {
+  const photoId = req.query.id;
+  db.getViewPic(photoId, (error, result) => {
+    if (error) {
+      console.log('server failed to get photo ', error)
+      res.end();
+    } else {
+      res.status(200).send(result);
+    }
+  })
 });
 
 const PORT = 3210;
